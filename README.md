@@ -20,7 +20,10 @@ I’m currently focused on expanding my skills in **Artificial Intelligence** an
 - ⚡ **Adaptable** in the face of complexity and ambiguity  
 - 🔍 **Detail focused**, analytical, and self driven  
 - 🚀 **Passionate builder** turning deep ideas into working solutions  
-- 💬 Strong written and verbal communicator
+- 💬 **Strong communicator** — clear in writing, articulate in speech  
+- 🤝 **People-savvy** and great at organizing team efforts for productive collaboration  
+- 🧭 **Thrives under pressure** — stays focused and leads calmly in demanding or high-stress situations  
+- 👥 **Natural leader** who inspires, coordinates, and brings out the best in a team 
 
 > I don’t just follow tutorials I break them down, question every step, and build my own path forward. Every day is a chance to become 1% better.
 
