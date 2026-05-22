@@ -2,7 +2,7 @@ name: Generate GitHub Metrics
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs every midnight
+    - cron: "0 0 * * *"
   workflow_dispatch:
   push:
     branches:
@@ -15,66 +15,41 @@ jobs:
       contents: write
     steps:
       
-      # 1. Main Base Profile (Header & Base Stats)
-      - name: Base Profile
+      # Image 1: The Massive Main Stats (Fortune, Habits, Calendar, Achievements)
+      - name: Main Metrics
         uses: lowlighter/metrics@latest
         with:
-          filename: metrics.base.svg
+          filename: metrics.svg
           token: ${{ secrets.METRICS_TOKEN }}
           committer_branch: output
-          base: header, activity, community, repositories, metadata
+          base: header, activity, community, repositories
           config_timezone: Asia/Kolkata
-
-      # 2. Isometric Calendar (Standalone)
-      - name: 3D Calendar
-        uses: lowlighter/metrics@latest
-        with:
-          filename: metrics.isocalendar.svg
-          token: ${{ secrets.METRICS_TOKEN }}
-          committer_branch: output
-          base: "" # Skips the header so it's just the calendar
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
-
-      # 3. Languages Activity (Standalone)
-      - name: Languages
-        uses: lowlighter/metrics@latest
-        with:
-          filename: metrics.languages.svg
-          token: ${{ secrets.METRICS_TOKEN }}
-          committer_branch: output
-          base: ""
-          plugin_languages: yes
-          plugin_languages_ignored: html, css
-          plugin_languages_details: bytes-size, percentage
-
-      # 4. Habits, Recent Activity & Achievements (Standalone)
-      - name: Habits & Achievements
-        uses: lowlighter/metrics@latest
-        with:
-          filename: metrics.habits.svg
-          token: ${{ secrets.METRICS_TOKEN }}
-          committer_branch: output
-          base: ""
-          config_timezone: Asia/Kolkata # Added the missing timezone!
           plugin_habits: yes
-          plugin_habits_from: 100 # Lowered from 200 to prevent timeouts
-          plugin_habits_days: 14
+          plugin_habits_from: 100
           plugin_habits_facts: yes
           plugin_habits_charts: yes
           plugin_achievements: yes
           plugin_achievements_display: compact
+          plugin_notable: yes
+          plugin_fortune: yes
+          plugin_activity: yes
+          plugin_activity_limit: 5
 
-      # 5. Latest Dev.to Posts (Standalone)
-      - name: Latest Posts
+      # Image 2: The Detailed Stats (Languages, Dev.to Posts, Followup)
+      - name: Detailed Metrics
         uses: lowlighter/metrics@latest
         with:
-          filename: metrics.posts.svg
+          filename: metrics.detailed.svg
           token: ${{ secrets.METRICS_TOKEN }}
           committer_branch: output
           base: ""
+          config_timezone: Asia/Kolkata
+          plugin_languages: yes
+          plugin_languages_details: bytes-size, percentage
+          plugin_followup: yes
           plugin_posts: yes
           plugin_posts_source: dev.to
-          # IMPORTANT: Change 'SiddhaK17' if your Dev.to username is different!
           plugin_posts_user: SiddhaK17 
-          plugin_posts_limit: 4
+          plugin_posts_limit: 2
