@@ -23,6 +23,7 @@ jobs:
           filename: metrics.svg
           token: ${{ secrets.METRICS_TOKEN }}
           committer_branch: output
+          output_action: commit
 
           user: SiddhaK17
           template: classic
@@ -96,6 +97,7 @@ jobs:
           filename: metrics.detailed.svg
           token: ${{ secrets.METRICS_TOKEN }}
           committer_branch: output
+          output_action: commit
 
           user: SiddhaK17
           template: classic
