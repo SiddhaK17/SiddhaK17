@@ -2,58 +2,143 @@ name: Generate GitHub Metrics
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs automatically every midnight
-  workflow_dispatch: # Allows you to run it manually
-  # REMOVED THE PUSH TRIGGER!
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
+
     steps:
-      
-      # Image 1: The Massive Main Stats
+      # =========================
+      # MAIN METRICS PANEL
+      # =========================
       - name: Main Metrics
         uses: lowlighter/metrics@latest
+
         with:
           filename: metrics.svg
           token: ${{ secrets.METRICS_TOKEN }}
           committer_branch: output
-          base: header, activity, community, repositories
+
+          user: SiddhaK17
+          template: classic
+          base: header, activity, community, repositories, metadata
+
           config_timezone: Asia/Kolkata
+          config_display: large
+          config_octicon: yes
+
+          # ACTIVITY
+          plugin_activity: yes
+          plugin_activity_limit: 8
+          plugin_activity_days: 14
+          plugin_activity_filter: all
+
+          # CONTRIBUTION CALENDAR
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
+
+          # CODING HABITS
           plugin_habits: yes
-          plugin_habits_from: 100
+          plugin_habits_from: 200
+          plugin_habits_days: 14
           plugin_habits_facts: yes
           plugin_habits_charts: yes
+
+          # ACHIEVEMENTS
           plugin_achievements: yes
+          plugin_achievements_threshold: C
           plugin_achievements_display: compact
+
+          # NOTABLE REPOSITORIES
           plugin_notable: yes
+          plugin_notable_repositories: yes
+          plugin_notable_from: all
+
+          # RANDOM DEV QUOTES
           plugin_fortune: yes
-          plugin_activity: yes
-          plugin_activity_limit: 5
-          # Safety net if the API lags
+
+          # FOLLOW-UP
+          plugin_followup: yes
+          plugin_followup_sections: repositories
+
+          # REPOSITORY INFO
+          repositories_forks: yes
+          repositories_affiliations: owner, collaborator, organization_member
+
+          # LINES OF CODE
+          plugin_lines: yes
+
+          # PEOPLE
+          plugin_people: yes
+          plugin_people_limit: 24
+
+          # STARRED TOPICS
+          plugin_topics: yes
+          plugin_topics_limit: 15
+          plugin_topics_mode: starred
+
+          # SAFETY
           retries: 3
           retries_delay: 300
 
-      # Image 2: The Detailed Stats
+      # =========================
+      # DETAILED METRICS PANEL
+      # =========================
       - name: Detailed Metrics
         uses: lowlighter/metrics@latest
+
         with:
           filename: metrics.detailed.svg
           token: ${{ secrets.METRICS_TOKEN }}
           committer_branch: output
+
+          user: SiddhaK17
+          template: classic
           base: ""
+
           config_timezone: Asia/Kolkata
+
+          # LANGUAGES
           plugin_languages: yes
+          plugin_languages_limit: 12
+          plugin_languages_analysis_timeout: 15
+          plugin_languages_sections: most-used
           plugin_languages_details: bytes-size, percentage
+          plugin_languages_categories: programming, markup
+          plugin_languages_recent_categories: programming, markup
+          plugin_languages_recent_days: 30
+          plugin_languages_recent_load: 300
+          plugin_languages_recent_repositories: 10
+
+          # FOLLOW-UP
           plugin_followup: yes
+          plugin_followup_sections: user
+
+          # DEV POSTS
           plugin_posts: yes
           plugin_posts_source: dev.to
-          plugin_posts_user: SiddhaK17 
-          plugin_posts_limit: 2
-          # Safety net if the API lags
+          plugin_posts_user: SiddhaK17
+          plugin_posts_limit: 5
+
+          # TRAFFIC
+          plugin_traffic: yes
+
+          # STARS
+          plugin_stars: yes
+
+          # GISTS
+          plugin_gists: yes
+
+          # TOPICS
+          plugin_topics: yes
+          plugin_topics_limit: 20
+          plugin_topics_mode: starred
+
+          # SAFETY
           retries: 3
           retries_delay: 300
