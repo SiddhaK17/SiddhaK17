@@ -2,11 +2,9 @@ name: Generate GitHub Metrics
 
 on:
   schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:
-  push:
-    branches:
-    - main
+    - cron: "0 0 * * *" # Runs automatically every midnight
+  workflow_dispatch: # Allows you to run it manually
+  # REMOVED THE PUSH TRIGGER!
 
 jobs:
   github-metrics:
@@ -15,7 +13,7 @@ jobs:
       contents: write
     steps:
       
-      # Image 1: The Massive Main Stats (Fortune, Habits, Calendar, Achievements)
+      # Image 1: The Massive Main Stats
       - name: Main Metrics
         uses: lowlighter/metrics@latest
         with:
@@ -36,8 +34,11 @@ jobs:
           plugin_fortune: yes
           plugin_activity: yes
           plugin_activity_limit: 5
+          # Safety net if the API lags
+          retries: 3
+          retries_delay: 300
 
-      # Image 2: The Detailed Stats (Languages, Dev.to Posts, Followup)
+      # Image 2: The Detailed Stats
       - name: Detailed Metrics
         uses: lowlighter/metrics@latest
         with:
@@ -53,3 +54,6 @@ jobs:
           plugin_posts_source: dev.to
           plugin_posts_user: SiddhaK17 
           plugin_posts_limit: 2
+          # Safety net if the API lags
+          retries: 3
+          retries_delay: 300
