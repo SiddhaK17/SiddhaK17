@@ -113,7 +113,6 @@ jobs:
           plugin_languages_recent_categories: programming, markup
           plugin_languages_recent_days: 30
           plugin_languages_recent_load: 300
-          plugin_languages_recent_repositories: 10
 
           # FOLLOW-UP
           plugin_followup: yes
