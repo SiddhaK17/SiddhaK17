@@ -1,0 +1,45 @@
+name: Generate GitHub Metrics
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs every night at midnight
+  workflow_dispatch: # Allows you to run it manually
+  push:
+    branches:
+    - main
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Generate the Metrics SVG
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: SiddhaK17
+          template: classic
+          base: header, activity, community, repositories, metadata
+          config_timezone: Asia/Kolkata
+          theme: tokyonight
+          
+          # Adds a 3D isometric commit calendar
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: half-year
+          
+          # Adds a colorful bar chart of the languages you use most
+          plugin_languages: yes
+          plugin_languages_ignored: html, css
+          plugin_languages_details: bytes-size, percentage
+          
+          # Adds a breakdown of what time of day you write code
+          plugin_habits: yes
+          plugin_habits_from: 200
+          plugin_habits_days: 14
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+          
+          # Shows off your unlocked GitHub trophies/badges
+          plugin_achievements: yes
+          plugin_achievements_display: compact
