@@ -100,7 +100,7 @@
 
 <h3 align="center">📈 GitHub Activity</h3>
 <div align="center">
-  <img src="https://metrics.lecoq.io/SiddhaK17?template=classic&base.activity=0" width="80%" />
+  <img src="github-metrics.svg" width="100%" alt="GitHub Metrics" />
   
   <br /><br />
   
