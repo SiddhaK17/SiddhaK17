@@ -2,8 +2,8 @@ name: Generate GitHub Metrics
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs every night at midnight
-  workflow_dispatch: # Allows you to run it manually
+    - cron: "0 0 * * *" # Runs every midnight
+  workflow_dispatch:
   push:
     branches:
     - main
@@ -14,32 +14,52 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Generate the Metrics SVG
+      
+      # 1. Main Base Profile (Header & Base Stats)
+      - name: Base Profile
         uses: lowlighter/metrics@latest
         with:
+          filename: metrics.base.svg
           token: ${{ secrets.METRICS_TOKEN }}
-          user: SiddhaK17
-          template: classic
+          committer_branch: output
           base: header, activity, community, repositories, metadata
           config_timezone: Asia/Kolkata
-          theme: tokyonight
-          
-          # Adds a 3D isometric commit calendar
+
+      # 2. Isometric Calendar (Standalone)
+      - name: 3D Calendar
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.isocalendar.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          committer_branch: output
+          base: "" # Skips the header so it's just the calendar
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
-          
-          # Adds a colorful bar chart of the languages you use most
+
+      # 3. Languages Activity (Standalone)
+      - name: Languages
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.languages.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          committer_branch: output
+          base: ""
           plugin_languages: yes
           plugin_languages_ignored: html, css
           plugin_languages_details: bytes-size, percentage
-          
-          # Adds a breakdown of what time of day you write code
+
+      # 4. Habits, Recent Activity & Achievements (Standalone)
+      - name: Habits & Achievements
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.habits.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          committer_branch: output
+          base: ""
           plugin_habits: yes
           plugin_habits_from: 200
           plugin_habits_days: 14
           plugin_habits_facts: yes
           plugin_habits_charts: yes
-          
-          # Shows off your unlocked GitHub trophies/badges
           plugin_achievements: yes
           plugin_achievements_display: compact
