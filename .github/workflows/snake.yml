@@ -2,13 +2,12 @@ name: Generate Snake Animation
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs automatically every midnight
-  workflow_dispatch: # Allows to run it manually right now
+    - cron: "0 0 * * *"
+  workflow_dispatch:
   push:
     branches:
     - main
 
-# THE FIX: Tells GitHub to grant the Action permission to push the file
 permissions:
   contents: write
 
@@ -17,17 +16,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      # Generates the snake using my actual contribution graph
       - name: Generate github-contribution-grid-snake.svg
         uses: platane/snk/svg-only@v3
         with:
           github_user_name: ${{ github.repository_owner }}
-          # THE UPGRADE: Generates a standard dark mode AND a custom Cyberpunk neon version
           outputs: |
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-            dist/github-contribution-grid-snake-cyberpunk.svg?color_snake=#ff00ff&color_dots=#161b22,#00ff00,#00ffff,#ff00ff,#8a2be2
             
-      # THE UPGRADE: Uses v4 to fix the yellow Node.js 20 warning
       - name: Push snake to the output branch
         uses: crazy-max/ghaction-github-pages@v4.0.0
         with:
