@@ -63,3 +63,17 @@ jobs:
           plugin_habits_charts: yes
           plugin_achievements: yes
           plugin_achievements_display: compact
+
+          # 5. Latest Dev.to Posts (Standalone)
+      - name: Latest Posts
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.posts.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          committer_branch: output
+          base: ""
+          plugin_posts: yes
+          plugin_posts_source: dev.to
+          # IMPORTANT: Change 'SiddhaK17' if your Dev.to username is different!
+          plugin_posts_user: SiddhaK17 
+          plugin_posts_limit: 4
