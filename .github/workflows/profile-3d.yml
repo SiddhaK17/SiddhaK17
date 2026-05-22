@@ -1,4 +1,4 @@
-name: GitHub-Profile-3D-Contrib
+name: GitHub Profile 3D Contrib
 
 on:
   schedule:
@@ -11,17 +11,24 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: generate-github-profile-3d-contrib
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: yoshi389111/github-profile-3d-contrib@0.7.1
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate 3D Contribution Graph
+        uses: yoshi389111/github-profile-3d-contrib@0.7.1
         env:
           GITHUB_TOKEN: ${{ secrets.METRICS_TOKEN }}
-          USERNAME: ${{ github.repository_owner }}
+          USERNAME: SiddhaK17
+
       - name: Commit & Push
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add -A .
-          git commit -m "generated 3D profile"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add .
+
+          git diff --staged --quiet || git commit -m "generated 3D contribution graph"
+
           git push
