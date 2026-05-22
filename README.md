@@ -100,8 +100,11 @@
 
 <h3 align="center">📈 GitHub Activity</h3>
 <div align="center">
-  <img src="https://metrics.lecoq.io/SiddhaK17?template=classic&base.activity=0" width="48%" />
-  <img src="https://raw.githubusercontent.com/SiddhaK17/SiddhaK17/output/github-contribution-grid-snake.svg" width="48%" alt="Contribution Snake" />
+  <img src="https://metrics.lecoq.io/SiddhaK17?template=classic&base.activity=0" width="80%" />
+  
+  <br /><br />
+  
+  <img src="https://raw.githubusercontent.com/SiddhaK17/SiddhaK17/output/github-contribution-grid-snake-dark.svg" width="100%" alt="Contribution Snake" />
 </div>
 
 <br />
