@@ -99,11 +99,39 @@
 <br />
 
 <h3 align="center">📈 GitHub Activity</h3>
+
 <div align="center">
-  <img src="github-metrics.svg" width="100%" alt="GitHub Metrics" />
-  
-  <br /><br />
-  
+  <img src="https://raw.githubusercontent.com/SiddhaK17/SiddhaK17/output/metrics.base.svg" width="100%" alt="GitHub Metrics Base" />
+</div>
+
+<br />
+
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top">
+      <h4 align="center">🧊 Isometric Commit Calendar</h4>
+      <img src="https://raw.githubusercontent.com/SiddhaK17/SiddhaK17/output/metrics.isocalendar.svg" width="100%" alt="3D Calendar" />
+    </td>
+    <td width="50%" valign="top">
+      <h4 align="center">💻 Languages Activity</h4>
+      <img src="https://raw.githubusercontent.com/SiddhaK17/SiddhaK17/output/metrics.languages.svg" width="100%" alt="Languages Activity" />
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4 align="center">⏱️ Coding Habits & Activity</h4>
+      <img src="https://raw.githubusercontent.com/SiddhaK17/SiddhaK17/output/metrics.habits.svg" width="100%" alt="Coding Habits" />
+    </td>
+    <td width="50%" valign="top">
+      <h4 align="center">📝 Latest Dispatches</h4>
+      <img src="https://raw.githubusercontent.com/SiddhaK17/SiddhaK17/output/metrics.posts.svg" width="100%" alt="Latest Posts" />
+    </td>
+  </tr>
+</table>
+
+<br />
+
+<div align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/SiddhaK17/SiddhaK17/output/github-contribution-grid-snake-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/SiddhaK17/SiddhaK17/output/github-contribution-grid-snake.svg">
@@ -111,9 +139,6 @@
   </picture>
 </div>
 
-<br />
-
-<h3 align="center">📝 Latest Dispatches</h3>
 <br />
 
 <p align="center">
